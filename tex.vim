@@ -19,3 +19,6 @@ function! SyncTexForward()
         exec "redraw!"
 endfunction
 nmap <Leader>f :call SyncTexForward()<CR>
+let g:Tex_ViewRule_pdf = 'zathura'
+" Don't insert double quotes when hitting " (useful for tikzcd)
+let g:Tex_SmartKeyQuote=0
