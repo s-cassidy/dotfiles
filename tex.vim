@@ -1,9 +1,5 @@
 setlocal sw=2
 setlocal ts=2
-nnoremap k gk
-nnoremap j gj
-vnoremap j gj
-vnoremap k gk
 
 call IMAP('EA*', "\\begin{IEEEeqnarray*}{<++>} \<CR><++>\<CR>\\end{IEEEeqnarray*}<++>", 'tex')
 
