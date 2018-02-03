@@ -1,0 +1,39 @@
+always-display-description true
+goto-next-feed no
+text-width 78
+max-items 500
+
+# Filters
+define-filter "Starred" "flags # \"S\""
+
+auto-reload yes
+cleanup-on-quit yes
+download-path "~/.newsbeuter/podcasts"
+feed-sort-order title-dec
+max-downloads 4
+player mplayer
+refresh-on-startup no
+suppress-first-reload yes
+reload-time 20
+reload-threads 2
+show-read-articles no
+show-read-feeds no
+
+
+# key binding --------------------
+
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+bind-key j down all
+bind-key k up all
+
+unbind-key g all
+bind-key g home all
+unbind-key G all
+bind-key G end all
+
+bind-key K pageup all
+bind-key J pagedown all
+bind-key SPACE open all

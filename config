@@ -195,7 +195,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c /home/sam/.config/i3/i3blocks.conf
+        status_command py3status -c /home/sam/.config/i3/i3status.conf #i3blocks -c /home/sam/.config/i3/i3blocks.conf
 	position top
 	colors {
 		background $inactive-bg-colour
@@ -215,7 +215,7 @@ bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers/clouds.png
 bindsym $mod+t exec --no-startup-id "python3 ~/.config/i3/touchpadtoggle.py"
 
 # Set a background
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/complexfunc1.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/minimal.png
 #Startup applications
 exec --no-startup-id dropbox start
 exec --no-startup-id pulseaudio --start
