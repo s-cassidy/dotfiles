@@ -1,7 +1,9 @@
 always-display-description true
 goto-next-feed no
 text-width 78
-max-items 500
+max-items 20
+
+browser w3m
 
 # Filters
 define-filter "Starred" "flags # \"S\""
@@ -12,15 +14,20 @@ download-path "~/.newsbeuter/podcasts"
 feed-sort-order title-dec
 max-downloads 4
 player mplayer
-refresh-on-startup no
+refresh-on-startup yes
 suppress-first-reload yes
 reload-time 20
 reload-threads 2
-show-read-articles no
+show-read-articles yes
 show-read-feeds no
+
+save-path ~/articles/blog-feed-archive/
 
 
 # key binding --------------------
+
+unbind-key p
+macro p set browser "wallabag add %u" ; open-in-browser ; set browser w3m
 
 unbind-key j
 unbind-key k

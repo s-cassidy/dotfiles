@@ -1,0 +1,22 @@
+#
+# Executes commands at login pre-zshrc.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Set the Less input preprocessor.
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+# Initialization for FDK command line tools.Mon May  7 13:45:05 2018

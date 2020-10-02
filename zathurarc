@@ -1,0 +1,16 @@
+set recolor-lightcolor "#0B0D0D"
+set recolor-darkcolor "#ebdbb2"
+
+set statusbar-fg "#282828" 
+set statusbar-bg "#ebdbb2" 
+
+set default-fg "#dcdcdc" 
+set default-bg "#13191c" 
+
+set recolor
+
+set adjust-open "best-fit"
+set synctex true
+set synctex-editor-command 'nvr --remote-silent +%l "%f"'
+set window-title-basename true
+set selection-clipboard clipboard

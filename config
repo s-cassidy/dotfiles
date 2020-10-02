@@ -19,45 +19,36 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango: Monoco for Powerline 10
+font pango: Noto Sans 11
 
 # colours and stuff
 #
 
-set $bg-colour #BA4C09
-set $inactive-bg-colour #282828
-set $text-colour #ebdbb2
-set $inactive-text-colour #a89984 
-set $urgent-bg-colour #dc322f
+set $bg-colour #263238
+set $inactive-bg-colour #23444c
+set $text-colour #dfdfdf
+set $inactive-text-colour #5294e2 
+set $urgent-bg-colour #ff557f
 
-# window colors
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec termite
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
- bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# menu
+bindsym $mod+d exec --no-startup-id xfce4-popup-whiskermenu
 
+
+bindsym $mod+f exec --no-startup-id rofi -show file -modi file:~/pc-scripts/rofi_file.sh
+bindsym $mod+space exec --no-startup-id rofi -show
+
+#
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -89,10 +80,12 @@ bindsym $mod+g split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f exec --no-startup-id "i3 fullscreen toggle && ~/pc-scripts/polybarshow.py -t"
+
+#hide bars
+bindsym $mod+b exec --no-startup-id "~/pc-scripts/polybarshow.py -t"
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -100,7 +93,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -108,12 +101,14 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+bindsym $mod+n exec --no-startup-id nmcli device disconnect wlp5s0
+
 # GAPS
 #
-for_window [class="^.*"] border pixel 3
-gaps inner 10
-gaps outer 10
-smart_gaps on
+for_window [class="^.*"] border pixel 0
+gaps inner 20
+gaps outer 5
+# smart_gaps on
 smart_borders on
 #workspace variables
 set $workspace1 "1.TODO"
@@ -127,24 +122,27 @@ set $workspace8 "8.misc"
 set $workspace9 "9.dump"
 set $workspace10 "10.media"
 
+exec --no-startup-id i3 workspace $workspace1
+
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4 
-bindsym $mod+5 workspace $workspace5 
-bindsym $mod+6 workspace $workspace6 
-bindsym $mod+7 workspace $workspace7
-bindsym $mod+8 workspace $workspace8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+1 exec --no-startup-id i3 workspace $workspace1 && python3 ~/.config/i3/touchpadtoggle.py 1
+bindsym $mod+2 exec --no-startup-id i3 workspace $workspace2 && python3 ~/.config/i3/touchpadtoggle.py 2
+bindsym $mod+3 exec --no-startup-id i3 workspace $workspace3 && python3 ~/.config/i3/touchpadtoggle.py 3
+bindsym $mod+4 exec --no-startup-id i3 workspace $workspace4 && python3  ~/.config/i3/touchpadtoggle.py 4
+bindsym $mod+5 exec --no-startup-id i3 workspace $workspace5 && python3  ~/.config/i3/touchpadtoggle.py 5
+bindsym $mod+6 exec --no-startup-id i3 workspace $workspace6 && python3  ~/.config/i3/touchpadtoggle.py 6
+bindsym $mod+7 exec --no-startup-id i3 workspace $workspace7 && python3  ~/.config/i3/touchpadtoggle.py 7
+bindsym $mod+8 exec --no-startup-id i3 workspace $workspace8 && python3  ~/.config/i3/touchpadtoggle.py 8
+bindsym $mod+9 exec --no-startup-id i3 workspace $workspace9 && python3  ~/.config/i3/touchpadtoggle.py 9
+bindsym $mod+0 exec --no-startup-id i3 workspace $workspace10 && python3  ~/.config/i3/touchpadtoggle.py 10
+
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1.TODO
-bindsym $mod+Shift+2 move container to workspace 2.term
-bindsym $mod+Shift+3 move container to workspace 3.web
-bindsym $mod+Shift+4 move container to workspace 4.vim
-bindsym $mod+Shift+5 move container to workspace 5.doc
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
@@ -154,10 +152,13 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # default workspaces
 assign [class="Firefox"] $workspace3
 assign [class="Thunderbird"] $workspace1
-assign [class="Wunderlistux"] $workspace1
 assign [class="Okular"] $workspace5
+assign [class="Zathura"] $workspace5
+assign [class="Evince"] $workspace5
 assign [class="Spotify"] $workspace10
+assign [class="Pcmanfm"] $workspace8
 assign [class="Chromium"] $workspace6
+assign [class="Steam"] $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -192,40 +193,35 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command py3status -c /home/sam/.config/i3/i3status.conf #i3blocks -c /home/sam/.config/i3/i3blocks.conf
-	position top
-	colors {
-		background $inactive-bg-colour
-		statusline #93a1a1
-		focused_workspace $inactive-bg-colour $inactive-bg-colour $text-colour
-		inactive_workspace $inactive-bg-colour $inactive-bg-colour $inactive-text-colour
-		urgent_workspace $inactive-bg-colour $inactive-bg-colour #dc322f
+#start the bar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id i3 workspace $workspace1
 
-	}
-}
-
-# Set some additional bindings
-
-bindsym $mod+b bar mode dock
-bindsym $mod+n bar mode invisible
-bindsym $mod+shift+x exec i3lock -i ~/Pictures/wallpapers/clouds.png
 bindsym $mod+t exec --no-startup-id "python3 ~/.config/i3/touchpadtoggle.py"
 
 # Set a background
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/minimal.png
+exec_always --no-startup-id nitrogen --restore
+#exec --no-startup-id synergy
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpapers/pexels-photo-640781.jpeg
 #Startup applications
-exec --no-startup-id dropbox start
+exec --no-startup-id xfsettingsd --sm-client-disable &
+exec --no-startup-id xfce4-volumed
+exec_always --no-startup-id setxkbmap gb
+exec --no-startup-id pulseaudio -D
+#exec --no-startup-id dropbox start
 exec --no-startup-id pulseaudio --start
 exec --no-startup-id fluxgui
+exec --no-startup-id pcmanfm -d
+exec --no-startup-id guake
 exec --no-startup-id unclutter
 exec --no-startup-id ~/export_x_info
-exec --no-startup-id compton
+exec_always --no-startup-id compton
 exec --no-startup-id rescuetime
+exec --no-startup-id keepass
+exec_always --no-startup-id "~/pc-scipts/polybarshow.py -s"
 exec --no-startup-id nm-applet
-exec --no-startup-id syndaemon -i 0.7 -K -R -t -d
+exec_always --no-startup-id xmodmap ~/.Xmodmap
+#exec --no-startup-id syndaemon -i 0.7 -K -R -t -d
 
 #exec --no-startup-id DATE=$(date +%F) && ~/vimwiki/makediary.py && gnome-terminal -e "vim -O ~/vimwiki/index.wiki ~/vimwiki/diary/$DATE.wiki"
 
@@ -233,16 +229,16 @@ exec --no-startup-id syndaemon -i 0.7 -K -R -t -d
 
 # Media keys
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +8% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -8% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-#bindsym XF86MonBrightnessUp exec xcalib -c # increase screen brightness
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +8% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -8% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+#
+## Sreen brightness controls
+##bindsym XF86MonBrightnessUp exec xcalib -c # increase screen brightness
 #bindsym XF86MonBrightnessDown exec xcalib -co 95 -a # decrease screen brightness
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc +10%  # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -inc -20% # decrease screen brightness
 # Touchpad controls
 bindsym XF86Display exec --no-startup-id "python3 ~/.config/i3/toggletouchpad.py" # toggle touchpad
 
@@ -253,14 +249,13 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 #locking
-exec --no-startup-id xss-lock -- i3lock -i ~/Pictures/wallpapers/clouds.png
+# exec --no-startup-id xss-lock -- i3lock -i /home/sam/Pictures/wallpapers/High-Resolution-Geometry-Wallpaper-.png
 
 
 
 # window colors
 
 #				border			background		text			indicator
-client.focused			#303030	$bg-colour		$text-colour
-client.unfocused		$inactive-bg-colour	$inactive-bg-colour	$inactive-text-colour
-client.unfocused inactive	$inactive-bg-colour	$inactive-bg-colour	$inactive-text-colour
+client.unfocused		$inactive-bg-colour	$bg-colour		$inactive-text-colour
+client.focused			$inactive-bg-colour	$inactive-bg-colour	$text-colour
 client.urgent			$urgent-bg-colour	$urgent-bg-colour	$text-colour
