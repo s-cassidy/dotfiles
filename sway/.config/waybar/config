@@ -1,0 +1,173 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "height": 30,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode"
+  ],
+  "modules-center": [
+    "sway/window"
+  ],
+  "modules-right": [
+    "memory",
+    "cpu",
+    "network",
+    "pulseaudio",
+    "battery",
+    "tray",
+    "custom/time",
+    "clock"
+  ],
+  "sway/mode": {
+    "format": " {}"
+  },
+  "sway/workspaces": {
+    "format": "{name}",
+    "disable-scroll-wraparound": true,
+    "enable-bar-scroll": true,
+    "smooth-scrolling-threshold": 30
+  },
+  "sway/window": {
+    "max-length": 80,
+    "tooltip": false
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}",
+    "format-disconnected": "Disconnected",
+    "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+    "unknown-tag": "N/A",
+    "interval": 2,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "MPD (connected)",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+  "clock": {
+    "format": "{:%H:%M}  ",
+    "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+    //"tooltip-format": "<tt><small></small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "battery": {
+    "format": "{icon}    {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "format-charging": "   {capacity}%",
+    "interval": 30,
+    "states": {
+      "full": 100,
+      "warning": 25,
+      "critical": 10
+    },
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{volume} {icon} ",
+    "format-alt": "{volume} {icon} ",
+    "format-alt-click": "click-right",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+  "custom/storage-root": {
+    "format": " {}",
+    "format-alt": " {percentage}%",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/modules/storage-root.sh"
+  },
+  "custom/storage-home": {
+    "format": " {}",
+    "format-alt": " {percentage}%",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/modules/storage-home.sh",
+    "on-click": "ranger"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-alt-click": "click-right",
+    "format-icons": [
+      "",
+      ""
+    ],
+    "on-scroll-down": "light -A 1",
+    "on-scroll-up": "light -U 1"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 5
+  },
+  "cpu": {
+    "tooltip": false,
+    "format": "cpu  {usage:>2}%"
+  },
+  "memory": {
+    "tooltip": false,
+    "format": "mem   {}%"
+  },
+  "network": {
+    "format-wifi": " ",
+    "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+    "format-linked": " {ifname} (No IP)",
+    "format-disconnected": "⚠",
+    "format-alt": " {essid}"
+  }
+}

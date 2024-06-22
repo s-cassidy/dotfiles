@@ -1,0 +1,48 @@
+urls-source "newsblur"
+newsblur-login "samc"
+newsblur-passwordfile "~/.config/newsboat/news-password.txt"
+
+cookie-cache "~/.newsboat/cookies.txt"
+
+
+
+always-display-description true
+goto-next-feed no
+text-width 78
+max-items 20
+
+
+# Filters
+define-filter "Starred" "flags # \"S\""
+
+auto-reload yes
+cleanup-on-quit yes
+feed-sort-order title-dec
+max-downloads 4
+refresh-on-startup yes
+suppress-first-reload yes
+reload-time 20
+reload-threads 2
+show-read-articles yes
+show-read-feeds no
+
+save-path ~/articles/blog-feed-archive/
+
+
+# key binding --------------------
+
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+bind-key j down all
+bind-key k up all
+
+unbind-key g all
+bind-key g home all
+unbind-key G all
+bind-key G end all
+
+bind-key K pageup all
+bind-key J pagedown all
+bind-key SPACE open all

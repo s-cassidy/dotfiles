@@ -1,0 +1,22 @@
+[user]
+	email = sam@cassidys.email
+	name = Sam Cassidy
+[credential]
+	helper = store
+[core]
+	pager = bat
+	editor = nvim
+	autocrlf = input
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[pull]
+	rebase = false
+	tool = nvim
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
