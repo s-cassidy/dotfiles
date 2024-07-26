@@ -15,7 +15,7 @@ set $term kitty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
-set $menu XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:~/.local/share/flatpak/exports/share wofi --show drun --prompt "Begin typing an application..." --matching=multicontains  | xargs swaymsg exec -- 
+set $menu XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:~/.local/share/flatpak/exports/share wofi --show drun -i --prompt "Begin typing an application..." --matching=multicontains  | xargs swaymsg exec -- 
 
 # set $menu ulauncher
 
@@ -53,7 +53,7 @@ include ~/.config/sway/themes/gruvbox
 # Example configuration:
 #
 exec swayidle \
-         timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 120 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          timeout 900 "systemctl suspend" \
          before-sleep 'swaylock -f -c 000000'
 
@@ -255,8 +255,8 @@ bar {
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    bindsym XF86MonBrightnessDown exec light -U 10
-    bindsym XF86MonBrightnessUp exec light -A 10
+    bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+    bindsym XF86MonBrightnessUp exec brightnessctl s +10%
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
@@ -277,10 +277,10 @@ bar {
     bindsym $mod+Shift+s exec grimshot copy area
 
     # Quick note in neovim
-    bindsym Mod1+n exec cool-retro-term -e ~/sd/tmux/qn
-    bindsym Mod1+t exec cool-retro-term -e ~/sd/tmux/td
-    bindsym Mod1+m exec cool-retro-term -e ~/sd/tmux/blog
-    bindsym Mod1+b exec cool-retro-term -e ~/sd/tmux/nbt
+    bindsym Mod1+n exec urxvt -e ~/sd/tmux/qn
+    bindsym Mod1+t exec urxvt -e ~/sd/tmux/td
+    bindsym Mod1+m exec urxvt -e ~/sd/tmux/blog
+    bindsym Mod1+b exec urxvt -e ~/sd/tmux/nbt
 
 # startup applications
 
@@ -297,7 +297,12 @@ assign [class="whatsapp-desktop-linux"] $ws5
 assign [app_id="thunderbird"] $ws1
 assign [class="obsidian"] $ws4
 assign [class="Spotify"] $ws0
-for_window [title="cool-retro-term"] floating enable 
+assign [class="Discord"] $ws5
+for_window [title="qn"] floating enable 
+for_window [title="td"] floating enable 
+for_window [title="blog"] floating enable 
+for_window [title="nbt"] floating enable 
+for_window [title="Pomodoro"] floating enable 
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 
