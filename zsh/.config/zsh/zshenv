@@ -29,6 +29,8 @@ export PATH="/home/sam/sd:$PATH"
 export PATH="/home/sam/.local/bin:$PATH"
 export PATH
 
+export GOPATH="/home/sam/workspace/go"
+
 
 # Set the list of directories that Zsh searches for programs.
 path=(
