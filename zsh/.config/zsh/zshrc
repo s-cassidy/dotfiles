@@ -1,4 +1,5 @@
 fpath=(~/dotfiles/zsh/.config/zsh/sd $fpath)
+fpath=(~/dotfiles/zsh/.config/zsh/completions $fpath)
 autoload -Uz compinit
 compinit
 
@@ -67,9 +68,9 @@ alias vim="nvim"
 alias vi="nvim"
 alias lg="lazygit"
 alias td="topydo"
+alias b="buku --suggest"
 alias ta="topydo add"
 alias fd="fdfind"
-alias rm='rmtrash'
 alias rmdir='rmdirtrash'
 alias qn='sd tmux qn'
 # alias hist='fzf `history 0`'
@@ -125,5 +126,8 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+## Go
+export PATH=$PATH:/usr/local/go/bin
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

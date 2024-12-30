@@ -7,6 +7,10 @@
 
 
 alias nautilus=nemo
+export PATH=$PATH:/usr/local/go/bin
+source ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/spaceship-prompt/spaceship.zsh
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.

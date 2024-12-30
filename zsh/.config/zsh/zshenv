@@ -27,6 +27,7 @@ fi
 
 export PATH="/home/sam/sd:$PATH"
 export PATH="/home/sam/.local/bin:$PATH"
+export PATH="/home/sam/workspace/go/bin:$PATH"
 export PATH
 
 export GOPATH="/home/sam/workspace/go"
@@ -56,5 +57,9 @@ fi
 #
 export EDITOR='nvim'
 export VISUAL='nvim'
-export PAGER='batcat'
+export PAGER='less'
+# export PAGER='batcat'
+# export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+# export MANROFFOPT="-c"
 export XDG_CURRENT_DESKTOP=Unity
+. "$HOME/.cargo/env"
