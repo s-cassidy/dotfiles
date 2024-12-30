@@ -39,11 +39,11 @@ set $ws0 10.music
 set $monitor "DP-1"
 set $laptop "eDP-1"
 output $laptop resolution 1920x1080 position 0,0
-output * bg ~/Pictures/wallpapers/great-wave-of-kanagawa-gruvbox.png fill
+output * bg ~/Pictures/wallpapers/coffee_cherries.jpg fill
 
 # Theme
 
-# include ~/.config/sway/themes/gruvbox
+include ~/.config/sway/themes/everforest
 
 #
 # Example configuration:
