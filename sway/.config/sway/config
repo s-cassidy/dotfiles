@@ -9,7 +9,7 @@ set $down j
 set $up k
 set $right l
 # preferred terminal emulator
-set $term kitty
+set $term foot
 # preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -28,18 +28,22 @@ set $ws4 4.note
 set $ws5 5.chat
 set $ws6 6.steam
 set $ws7 7.game
-set $ws8 8.chat
-set $ws9 9.chat
+set $ws8 8.photo
+set $ws9 9.books
 set $ws0 10.music
 
 
 ### Output configuration
 #
+
+set $monitor "DP-1"
+set $laptop "eDP-1"
+output $laptop resolution 1920x1080 position 0,0
 output * bg ~/Pictures/wallpapers/great-wave-of-kanagawa-gruvbox.png fill
 
 # Theme
 
-include ~/.config/sway/themes/gruvbox
+# include ~/.config/sway/themes/gruvbox
 
 #
 # Example configuration:
@@ -50,7 +54,6 @@ include ~/.config/sway/themes/gruvbox
 
 ### Idle configuration
 #
-# Example configuration:
 #
 exec swayidle \
          timeout 120 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -163,8 +166,6 @@ input "type:keyboard" {
 #
 # Displays:
 #
-    set $monitor "DP-1"
-    set $laptop "eDP-1"
 
     workspace $ws1 output $laptop
     workspace $ws2 output $monitor $laptop
@@ -250,6 +251,14 @@ bar {
 
 ## media etc
 
+## screenshots
+
+bindsym $mod+Shift+s exec grimshot copy area
+bindsym $mod+Shift+p exec grimshot save area
+bindsym $mod+Shift+w exec grimshot save window
+
+
+
 
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -271,10 +280,8 @@ bar {
     bindsym $mod+Shift+r reload
 
     # Edit the configuration file
-    bindsym $mod+Shift+c exec kitty -e nvim ~/.config/sway/config
+    bindsym $mod+Shift+c exec foot -e /home/sam/.local/bin/nvim /home/sam/.config/sway/config
 
-    # Drag an area to screenshot
-    bindsym $mod+Shift+s exec grimshot copy area
 
     # Quick note in neovim
     bindsym Mod1+n exec urxvt -e ~/sd/tmux/qn
@@ -286,9 +293,12 @@ bar {
 
 exec bitwarden
 exec sirikali
+exec pcloud
+exec mako
+exec lxpolkit
 exec flatpak run me.kozec.syncthingtk
-exec flatpak run md.obsidian.Obsidian
-exec sway-idle-audio-inhibit
+exec sway-audio-idle-inhibit
+exec bukuserver run
 
 # default workspaces
 assign [app_id="librewolf-default"] $ws3
@@ -298,10 +308,10 @@ assign [app_id="thunderbird"] $ws1
 assign [class="obsidian"] $ws4
 assign [class="Spotify"] $ws0
 assign [class="Discord"] $ws5
-for_window [title="qn"] floating enable 
-for_window [title="td"] floating enable 
-for_window [title="blog"] floating enable 
-for_window [title="nbt"] floating enable 
+assign [class="Steam"] $ws6
+assign [class="Telegram"] $ws5
+assign [class="Whalebird"] $ws5
+for_window [class="URxvt"] floating enable
 for_window [title="Pomodoro"] floating enable 
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
