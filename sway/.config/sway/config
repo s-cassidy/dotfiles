@@ -26,10 +26,10 @@ set $ws2 2.dev
 set $ws3 3.web
 set $ws4 4.note
 set $ws5 5.chat
-set $ws6 6.steam
-set $ws7 7.game
-set $ws8 8.photo
-set $ws9 9.books
+set $ws6 6.lib
+set $ws7 7.steam
+set $ws8 8.game
+set $ws9 9.photo
 set $ws0 10.music
 
 
@@ -107,6 +107,11 @@ input "type:keyboard" {
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
     floating_modifier $mod normal
+
+    # warpd hotkeys
+    bindsym $mod+t exec warpd --hint
+    bindsym $mod+m exec warpd --normal
+    bindsym $mod+g exec warpd --grid
 
 
     # Exit sway (logs you out of your Wayland session)
@@ -280,39 +285,37 @@ bindsym $mod+Shift+w exec grimshot save window
     bindsym $mod+Shift+r reload
 
     # Edit the configuration file
-    bindsym $mod+Shift+c exec foot -e /home/sam/.local/bin/nvim /home/sam/.config/sway/config
+    bindsym $mod+Shift+c exec foot -e /usr/bin/nvim /home/sam/.config/sway/config
 
 
     # Quick note in neovim
-    bindsym Mod1+n exec urxvt -e ~/sd/tmux/qn
-    bindsym Mod1+t exec urxvt -e ~/sd/tmux/td
-    bindsym Mod1+m exec urxvt -e ~/sd/tmux/blog
-    bindsym Mod1+b exec urxvt -e ~/sd/tmux/nbt
+    bindsym Mod1+n exec foot ~/sd/tmux/qn
+    bindsym Mod1+t exec foot ~/sd/tmux/td
+    bindsym Mod1+m exec foot ~/sd/tmux/blog
+    bindsym Mod1+b exec foot ~/sd/tmux/nbt
 
 # startup applications
 
-exec bitwarden
-exec sirikali
+exec flatpak run com.bitwarden.desktop
+exec dev.vencord.Vesktop
 exec pcloud
+exec sayonara
 exec mako
 exec lxpolkit
 exec flatpak run me.kozec.syncthingtk
 exec sway-audio-idle-inhibit
-exec bukuserver run
+exec warp
+exec kanata -c ~/.config/kanata/kanata.kbd
 
 # default workspaces
-assign [app_id="librewolf-default"] $ws3
+assign [app_id="LibreWolf"] $ws3
+assign [app_id="vesktop"] $ws5
 assign [class="whatsapp-desktop-linux"] $ws5
-assign [class="whatsapp-desktop-linux"] $ws5
+assign [app_id="com.sayonara-player.Sayonara"] $ws0
 assign [app_id="thunderbird"] $ws1
 assign [class="obsidian"] $ws4
 assign [class="Spotify"] $ws0
-assign [class="Discord"] $ws5
-assign [class="Steam"] $ws6
-assign [class="Telegram"] $ws5
-assign [class="Whalebird"] $ws5
-for_window [class="URxvt"] floating enable
-for_window [title="Pomodoro"] floating enable 
+# for_window [title="cool-retro-term"] floating enable 
 for_window [window_type="dialog"] floating enable
 for_window [window_role="dialog"] floating enable
 

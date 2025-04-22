@@ -14,6 +14,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 export SD_CAT="batcat"
+export MANPAGER='nvim +Man!'
 
 ### MAKE VIM MODE TOLERABLE
 
@@ -66,6 +67,7 @@ alias cat="batcat"
 alias bat="batcat"
 alias vim="nvim"
 alias vi="nvim"
+alias lynx="lynx -cookies-"
 alias lg="lazygit"
 alias td="topydo"
 alias b="buku --suggest"
@@ -75,7 +77,10 @@ alias rmdir='rmdirtrash'
 alias qn='sd tmux qn'
 # alias hist='fzf `history 0`'
 alias fa='fzf --preview "batcat --color=always {}"'
-
+alias sess='tmux new -s'
+alias upgrade='sd sys upgrade'
+alias w3m='w3m -sixel -o auto_image=TRUE -o display_image=1 -T text/html'
+alias nvminit='source ~/.config/zsh/loadnvm'
 
 source ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -126,8 +131,8 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
+alias lnvm="source $HOME/.config/zsh/loadnvm"
+
 ## Go
 export PATH=$PATH:/usr/local/go/bin
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
